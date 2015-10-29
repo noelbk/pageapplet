@@ -1,0 +1,37 @@
+<project default="build">
+    <property name="main.class"  value="com.burtonkrahn.pageapplet.PageApplet"/>
+    <property name="jar.name"  value="pageapplet.jar"/>
+    <property name="www.dir"  value="html"/>
+
+    <path id="classpath">
+    </path>
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="build">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes"
+        classpathref="classpath">
+          <!-- <compilerarg value="-Xlint"/> -->
+        </javac>
+
+
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/${jar.name}" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="build">
+        <copy file="build/jar/${jar.name}" todir="${www.dir}"/>
+	<exec executable="gnome-open" spawn="true">
+	  <arg value="${www.dir}\index.html"/>
+	</exec>
+    </target>
+
+</project>
+

@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Page Fold Demo</title>
+
+<script language="JavaScript">
+  function resize() {
+      // debug
+      return;
+
+      if (navigator.appName.indexOf("Microsoft") != -1) {
+          width=document.body.clientWidth;
+          height=document.body.clientHeight;
+      } else {
+          var netscapeScrollWidth=15;
+          width=window.innerWidth - netscapeScrollWidth;
+          height=window.innerHeight-netscapeScrollWidth;
+      }
+      document.PageApplet.width = width;
+      document.PageApplet.height = height;
+      window.scroll(0,0);
+  }
+  window.onResize = resize;
+  window.onLoad = resize;
+</script>
+
+</head>
+
+<body onResize="resize()" onLoad="resize()" style="margin: 0px">
+
+<p>
+<b>Click and drag on the right hand page to flip it</b>
+(The left-hand page doesn't flip yet.)
+</p>
+
+<center>
+<applet NAME="PageApplet"
+     width=700
+     height=600
+     code="com.burtonkrahn.pageapplet.PageApplet.class" 
+     archive="pageapplet.jar"
+     >
+</applet>
+</center>
+
+<p>
+This is the start of a page-flipping preview with Java.
+It seems to work OK in IE, FireFox, and Safari.
+</p>
+
+<p>
+If you find a bug, please let me know: <a href="mailto:noel@burton-krahn.com">noel@burtonkrahn.com</a>.
+
+</p>
+
+  </body>
+</html>
